@@ -1,38 +1,145 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  padding-left: 100px;
+  font-family: 'Open Sans', 'Courier New', Courier, monospace;
+  background-color: #f2f2f2;
+  min-width: 100%;
   min-height: 100vh;
+}
+.Auth{
+  width: 100vw;
+  height: 100vh;
+  background-image: -webkit-linear-gradient(351deg, #ff70a6, #ff9770 40%, #ffd670 73%, #e9ff70);
+  background-image: -o-linear-gradient(351deg, #ff70a6, #ff9770 40%, #ffd670 73%, #e9ff70);
+  background-image: linear-gradient(99deg, #ff70a6, #ff9770 40%, #ffd670 73%, #e9ff70);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-align: center;
+      align-items: center;
   color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.Auth-Container{
+  border-radius: 8px;
+  -webkit-box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25), 0 10px 10px 0 rgba(0, 0, 0, 0.26);
+          box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25), 0 10px 10px 0 rgba(0, 0, 0, 0.26);
+  background-image: -webkit-linear-gradient(353deg, #ff7a6e, #Ffd670);
+  background-image: -o-linear-gradient(353deg, #ff7a6e, #Ffd670);
+  background-image: linear-gradient(97deg, #ff7a6e, #Ffd670);
+  width: 35vw;
+  height: 55vh;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  padding: 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.Auth-Title{
+  font-size: 80px;
+  font-weight: 700;
+}
+
+.User-Input{
+  width: 55%;
+}
+
+.User-Input > input:focus {
+  outline-color: #ff9770;
+  outline-width: 5px;
+}
+
+.Auth-Buttons{
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  width: 55%;
+}
+.Auth-Btn{
+  border-radius: 1px;
+  background-image: -webkit-radial-gradient(50% -46%, circle, #737373, #403d39);
+  background-image: -o-radial-gradient(50% -46%, circle, #737373, #403d39);
+  background-image: radial-gradient(circle at 50% -46%, #737373, #403d39);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  height: 45px;
+  width: 65px;
+  padding: 10px 20px;
+  color: white;
+  border: none;
+}
+
+.Nav{
+    width: 100px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 20px;
+    color: white;
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#ff7abe), to(#ff9770));
+    background-image: -webkit-linear-gradient(bottom, #ff7abe, #ff9770);
+    background-image: -o-linear-gradient(bottom, #ff7abe, #ff9770);
+    background-image: linear-gradient(0deg, #ff7abe, #ff9770);
+    -webkit-box-shadow: 10px 0 20px 0 rgba(0, 0, 0, 0.1), 5px 0 5px rgba(0, 0, 0, 0.2);
+            box-shadow: 10px 0 20px 0 rgba(0, 0, 0, 0.1), 5px 0 5px rgba(0, 0, 0, 0.2);
+}
+
+.Nav>div{
+  margin: 0 0 45px;
+}
+
+.Nav-Container{
+  height: 100px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+  -ms-flex-align: center;
+      align-items: center;
+}
+
+.Nav-Prof-Pic{
+  width: 70px;
+  height: 70px;
+  background-color: white;
+  background-position: center;
+  background-size: cover;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 0 20px #333;
+          box-shadow: 0 0 20px #333;
+}
+
+.Nav-Links{
+  height: 120px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+      flex-direction: column;
+  -ms-flex-align: center;
+      align-items: center;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+
+.Nav-img{
+  width: 40px;
+}
+
+.Logout{
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
 }

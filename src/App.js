@@ -1,6 +1,6 @@
 import React from 'react';
 
-import SideNav from './components/side-nav/SideNav';
+import Nav from './Components/Nav/Nav';
 import routes from './routes';
 
 import './App.css';
@@ -8,7 +8,7 @@ import './App.css';
 function App() {
   return (
     <div className='App'>
-      <SideNav />
+      <Nav />
       {routes}
     </div>
   )
