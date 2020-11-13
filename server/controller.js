@@ -14,7 +14,7 @@ module.exports = {
         req.session.user = {
             userId: newUser.user_id,
             username: newUser.username,
-            profilePic: 'https://robohash.org/?set=set2'
+            profilePic: 'https://robohash.org/john'
         }
         res.status(200).send(req.session.user);
     },
