@@ -4,17 +4,17 @@ module.exports = {
     register: async (req, res)=> {
         const db = req.app.get('db');
         const {username, password} = req.body;
-        const [foundUser] = await db.check_user(username);
-        if(foundUser){
+        const foundUser = await db.check_user(username);
+        if(foundUser[0]){
             return res.status(400).send('username already registered')
         }
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(password, salt);
-        const [newUser] = await db.register_user([username, hash]);
+        const [newUser] = await db.add_user([username, hash]);
         req.session.user = {
             userId: newUser.user_id,
             username: newUser.username,
-            profilePic: newUser.profile_pic
+            profilePic: 'https://robohash.org/?set=set2'
         }
         res.status(200).send(req.session.user);
     },
@@ -60,7 +60,7 @@ module.exports = {
             console.log(err)
         })
     },
-    getPosts: async (req, res) =>{
+    getPosts: (req, res) =>{
         const db = req.app.get('db');
         const {userId} = req.params;
         
@@ -102,7 +102,7 @@ module.exports = {
         db.delete_post(id)
         .then(() => res.sendStatus(200))
         .catch(err => {
-            res.status(500).send('Could not delete post!')
+            res.status(500).send('Could not delete post')
         })
     }
 }
