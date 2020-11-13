@@ -28,9 +28,17 @@ massive({
     console.log('Database connected')
 }).catch(err => console.log(err))
 
+//users
 app.post('/auth/register', ctrl.register);
 app.post('/auth/login', ctrl.login);
 app.post('/auth/logout', ctrl.logout);
-app.get('api/user', ctrl.getUser);
+app.get('/api/user', ctrl.getUser);
+
+//posts
+app.get('/api/posts/:id', ctrl.getPost);
+app.get('/api/posts/:userid', ctrl.getPosts);
+app.post('/api/posts', ctrl.createPost);
+app.put('/api/posts/:id', ctrl.updatePosts);
+app.delete('/api/posts/:id', ctrl.deletePost);
 
 app.listen(SERVER_PORT, ()=>console.log(`Server listening on port ${SERVER_PORT}`))

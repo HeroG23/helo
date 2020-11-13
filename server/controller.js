@@ -49,4 +49,60 @@ module.exports = {
             res.status(404).send('Please log in')
         }
     },
+    getPost: (req, res) => {
+        const db = db.req.app.get('db');
+        const {id} = req.params;
+
+        db.find_post(id)
+        .then(post => res.status(200).send(post))
+        .catch(err => {
+            res.status(404).send(`Can't find the post you're looking for.`)
+            console.log(err)
+        })
+    },
+    getPosts: async (req, res) =>{
+        const db = req.app.get('db');
+        const {userId} = req.params;
+        
+        db.find_posts(userId)
+        .then(posts => res.status(200).send(posts))
+        .catch(err => {
+            res.status(404).send(`Couldn't find any of your posts`)
+            console.log(err)
+        })
+    },
+    createPost: (req, res) =>{
+        const db = req.app.get('db');
+        const {title, img, content} = req.body;
+
+        db.create_post([title, img, content])
+        .then(() => res.sendStatus(200))
+        .catch(err => {
+            res.status(500).send(`Couldn't create post!`)
+            console.log(err)
+        })
+    },
+    updatePosts: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+        const {desc} = req.query;
+
+        db.update_post([id, desc])
+        .then(() => res.sendStatus(200))
+        .catch(err => {
+            res.status(500).send('Could not update post!')
+            console.log(err)
+        })
+    },
+
+    deletePost: (req, res) => {
+        const db = req.app.get('db')
+        const{id} = req.params
+
+        db.delete_post(id)
+        .then(() => res.sendStatus(200))
+        .catch(err => {
+            res.status(500).send('Could not delete post!')
+        })
+    }
 }
