@@ -54,7 +54,7 @@ class Dashboard extends Component {
     let posts = this.state.posts.map((e) => {
       return (
         <Link to={`/posts/${e.post_id}`} key={e.post_id}>
-          <div className="Post-Box">
+          <div className="content-box Post-Box">
             <h3>{e.title}</h3>
             <div className="author">
               <p>by {e.username}</p>
@@ -66,16 +66,17 @@ class Dashboard extends Component {
     });
     return (
       <div className="Dashboard">
-        <div className="Post-Content">
-          <div className="Search">
+        <div className="content-box dash-content">
+          <div className="search">
             <input
               name="search"
               placeholder="Search"
               value={this.state.search}
               onChange={(e) => this.handleChange(e)}
-              className="Search-Bar"
+              className= "Bar"
             />
-            <button className="Auth-Btn" onClick={this.reset}>
+            <img onClick={this.getPosts} className="search-btn" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR4uFXGq2P-n4xCz_54io58W5ojebVPJmW4pg&usqp=CAU" alt=""/>
+            <button className="Btn" onClick={this.reset}>
               Reset
             </button>
           </div>
@@ -92,7 +93,7 @@ class Dashboard extends Component {
             />
           </div>
         </div>
-        <div className="Post-Content">
+        <div className="content-box dash-posts">
           {!this.state.loading ? (
             posts
           ) : (
