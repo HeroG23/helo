@@ -21,8 +21,8 @@ module.exports = {
     login: async (req, res) => {
         const db = req.app.get('db');
         const {username, password} = req.body;
-        const [foundUser] = await db.check_user(username);
-        if(!foundUser){
+        const foundUser = await db.check_user(username);
+        if(!foundUser[0]){
             res.status(401).send("Incorrect login information")
         }
         const authenticated = bcrypt.compareSync(password, foundUser.password);
