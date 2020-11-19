@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 
 class Dashboard extends Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       search: "",
       myPosts: true,
@@ -14,46 +14,28 @@ class Dashboard extends Component {
     };
   }
   componentDidMount() {
-    this.getPosts();
+    this.getPosts()
   }
 
-  handleChange = (e) => {
-    this.setState({
-      [e.target.name]: e.target.value,
-    });
-  };
+  handleChange = e => this.setState({[e.target.name]: e.target.value})
 
   getPosts = () => {
     let { search, myPosts } = this.state;
-    let url = `/api/posts/${this.props.userId}`;
-    if (myPosts && search) {
-      url += `?mine=true&search=${search}`;
-    } else if (!myPosts && search) {
-      url += `?search=${search}`;
-    } else if (myPosts && !search) {
-      url += `?mine=true`;
-    }
-    axios.get(url).then((res) => {
-      setTimeout(() =>
-        this.setState({ posts: res.data, loading: false, search: "" })
-      );
-    });
-  };
+    
+    axios.get(`/api/posts?myPosts=${myPosts}&userId=${this.props.userId}&search=${search}`)
+    .then(res => this.setState({posts: res.data, loading: false}))
+    .catch(err => console.log(err))
+  }
 
   reset = () => {
-    let { myPosts } = this.state;
-    let url = `/api/posts/${this.props.userId}`;
-    if (myPosts) {
-      url += `?mine=true`;
-    }
-    axios.get(url).then((res) => {
-      this.setState({ posts: res.data, loading: false, search: "" });
-    });
-  };
+    this.setState({search: "", loading: true})
+    this.getPosts()
+  }
+
   render() {
     let posts = this.state.posts.map((e) => {
       return (
-        <Link to={`/posts/${e.post_id}`} key={e.post_id}>
+        <Link className="post-container" to={`/posts/${e.post_id}`} key={e.post_id}>
           <div className="content-box Post-Box">
             <h3>{e.title}</h3>
             <div className="author">
@@ -108,10 +90,6 @@ class Dashboard extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    userId: state.userId,
-  };
-}
+const mapStateToProps = state => state
 
 export default connect(mapStateToProps)(Dashboard);

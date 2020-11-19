@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import axios from "axios";
 
-import { updateUser } from "../../redux/reducer";
+import { loginUser } from "../../redux/reducer";
 
 class Auth extends Component {
   constructor(props) {
@@ -23,8 +23,8 @@ class Auth extends Component {
     const { username, password } = this.state;
     try {
       const user = await axios.post("/auth/login", { username, password });
-      this.props.loginUser(user.data);
-      this.props.history.push("/feed");
+      this.props.loginUser(user.data.username, user.data.profilePic, user.data.userId);
+      this.props.history.push("/dashboard");
     } catch (err) {
       alert(err.response.request.response);
     }
@@ -34,8 +34,8 @@ class Auth extends Component {
     const { password, username } = this.state;
     try {
       const user = await axios.post("/auth/register", { username, password });
-      this.props.loginUser(user.data);
-      this.props.history.push("/feed");
+      this.props.loginUser(user.data.userId, user.data.username, user.data.profilePic);
+      this.props.history.push("/dashboard");
     } catch (err) {
       alert(err.response.request.response);
     }
@@ -81,4 +81,4 @@ class Auth extends Component {
 
 const mapStateToProps = (state) => state;
 
-export default connect(mapStateToProps, { updateUser })(Auth);
+export default connect(mapStateToProps, { loginUser })(Auth);

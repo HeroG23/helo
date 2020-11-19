@@ -1,3 +1,2 @@
 INSERT INTO posts (title, img, content, author_id)
-VALUES ($1, $2, $3, author_id)
-WHERE 
+VALUES ($1, $2, $3, $4);

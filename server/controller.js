@@ -3,9 +3,11 @@ const bcrypt = require('bcrypt');
 module.exports = {
     register: async (req, res)=> {
         const db = req.app.get('db');
-        const {username, password, profilePic} = req.body;
-        const foundUser = await db.check_user(username);
-        if(foundUser[0]){
+
+        const {username, password} = req.body;
+        const profilePic = `https://robohash.org/${username}`
+        const [foundUser] = await db.check_user(username);
+        if(foundUser){
             return res.status(400).send('username already registered')
         }
         const salt = bcrypt.genSaltSync(10);
@@ -20,10 +22,12 @@ module.exports = {
     },
     login: async (req, res) => {
         const db = req.app.get('db');
+
         const {username, password} = req.body;
         const [foundUser] = await db.check_user(username);
+
         if(!foundUser){
-            res.status(401).send("Incorrect login information")
+           return res.status(401).send("Incorrect login information")
         }
         const authenticated = bcrypt.compareSync(password, foundUser.password);
         if (authenticated){
@@ -32,9 +36,9 @@ module.exports = {
                 username: foundUser.username,
                 profilePic: foundUser.profile_pic
             }
-            res.status(200).send(req.session.user);
+            return res.status(200).send(req.session.user);
         }else{
-            res.status(401).send('Incorrect login information')
+            return res.status(401).send('Incorrect login information')
         }
     },
     logout: (req, res) => {
@@ -49,60 +53,32 @@ module.exports = {
             res.status(404).send('Please log in')
         }
     },
-    getPost: (req, res) => {
-        const db = db.req.app.get('db');
-        const {id} = req.params;
-
-        db.find_post(id)
-        .then(post => res.status(200).send(post))
-        .catch(err => {
-            res.status(404).send(`Can't find the post you're looking for.`)
-            console.log(err)
-        })
-    },
-    getPosts: (req, res) =>{
-        const db = req.app.get('db');
-        const {userId} = req.params;
-        
-        db.find_posts(userId)
-        .then(posts => res.status(200).send(posts))
-        .catch(err => {
-            res.status(404).send(`Couldn't find any of your posts`)
-            console.log(err)
-        })
-    },
-    createPost: (req, res) =>{
-        const db = req.app.get('db');
-        const {title, img, content} = req.body;
-
-        db.create_post([title, img, content])
-        .then(() => res.sendStatus(200))
-        .catch(err => {
-            res.status(500).send(`Couldn't create post!`)
-            console.log(err)
-        })
-    },
-    updatePosts: (req, res) => {
+    getPost: async(req, res) => {
         const db = req.app.get('db');
         const {id} = req.params;
-        const {desc} = req.query;
 
-        db.update_post([id, desc])
-        .then(() => res.sendStatus(200))
-        .catch(err => {
-            res.status(500).send('Could not update post!')
-            console.log(err)
-        })
+        const [post] = await db.find_post(id)
+        res.status(200).send(post)
     },
+    getPosts: async (req, res) =>{
+        const db = req.app.get('db');
+        const {myPosts, userId, search} = req.query
+        const posts = await db.find_posts([myPosts, userId, search])
 
-    deletePost: (req, res) => {
+        res.status(200).send(posts)
+    },
+    createPost: async (req, res) =>{
+        const db = req.app.get('db');
+        const {title, img, content, userId} = req.body;
+
+        await db.create_post([title, img, content, userId])
+        res.sendStatus(200)
+    },
+    deletePost: async (req, res) => {
         const db = req.app.get('db')
-        const{id} = req.params
+        const {id} = req.params
 
-        db.delete_post(id)
-        .then(() => res.sendStatus(200))
-        .catch(err => {
-            res.status(500).send('Could not delete post')
-        })
+        await db.delete_post(id)
+        res.sendStatus(200)
     }
 }
