@@ -1,27 +1,41 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700');
 /* largescale CSS */
 .App {
-  padding-left: 100px;
+  padding: 20px 20px 20px 100px;
   font-family: 'Open Sans', 'Courier New', Courier, monospace;
   background-color: #f2f2f2;
   min-width: 100%;
   min-height: 100vh;
 }
 
-.content-box {
+.dark_button {
+  border-radius: 1px;
+  background-image: -webkit-radial-gradient(50% -46%, circle, #737373, #403d39);
+  background-image: -o-radial-gradient(50% -46%, circle, #737373, #403d39);
+  background-image: radial-gradient(circle at 50% -46%, #737373, #403d39);
+  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+  padding: 10px 20px;
+  color: white;
+  border: none;
+}
+
+.content_box {
   border-radius: 2px;
   background-color: white;
   -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
+          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
   padding: 20px;
 }
-.title{
+
+.title {
   font-size: 40px;
   font-weight: 700;
   color: #ff9770;
   margin: 0 0 10px;
 }
-.author{
+
+.author_box {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: end;
@@ -29,10 +43,8 @@
   -ms-flex-align: end;
       align-items: flex-end;
   width: 30%;
-  text-decoration: none;
 }
-
-.author > img{
+.author_box > img {
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -41,33 +53,6 @@
   margin: 0 5px;
 }
 
-/* Fun CSS */
-.loading{
-  margin: 100px auto;
-  width: 200px;
-  position: relative;
-  -webkit-animation: rotating .75s linear infinite;;
-  animation: rotating .75s linear infinite;
-}
-.loader{
-  border-radius:50%;
-  border: 10px solid #ff70a6;
-  border: 10px solid #ffd670;
-  width: 200px;
-  height: 200px;
-}
-.load{
-  border-radius: 50%;
-  border-left: 10px solid #ffd670;
-  border-top: 10px solid #ffd670;
-  border-left: 10px solid #ff70a6;
-  border-top: 10px solid #ff70a6;
-  width: 200px;
-  height: 200px;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 @-webkit-keyframes rotating {
   from{
     -webkit-transform: rotate(0deg);
@@ -79,285 +64,45 @@
   }
 }
 
-@keyframes rotating{
+@keyframes rotating {
   from{
     -webkit-transform: rotate(0deg);
             transform: rotate(0deg);
   }
   to{
     -webkit-transform: rotate(360deg);
-    transform: rotate(360deg);
+            transform: rotate(360deg);
   }
 }
 
-/* Post.css */
-.Post{
-  width: 70%;
-  min-height: 400px;
-  margin: 0 auto;
+.load_box {
+  margin: 100px auto;
+  width: 200px;
+  position: relative;
+  -webkit-animation: rotating .75s linear infinite;
+          animation: rotating .75s linear infinite;
 }
-
-.post-header{
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
+.load_background {
+  border-radius:50%;
+  border: 10px solid #ff70a6;
+  border: 10px solid #ffd670;
+  width: 200px;
+  height: 200px;
 }
-
-.post-content{
-  margin:10px 0 0;
-}
-
-.post-img{
-  border-radius: 4px;
-  width: 50%;
-  height: 300px;
-  margin: 0 15px 0 0;
-  float: left;
-  background-color: white;
-}
-
-.post-container {
-  width: 100%;
-  color: black;
-}
-
-.Post-Box {
-  display: flex;
-  justify-content: space-between;
-  margin: 10px 0;
-}
-
-.Post-Box > h3 {
-  text-decoration: none;
-}
-
-.error-box{
-  padding: 50px;
-}
-
-/* Auth.css */
-.Auth{
-  width: 100vw;
-  height: 100vh;
-  background-image: -webkit-linear-gradient(351deg, #ff70a6, #ff9770 40%, #ffd670 73%, #e9ff70);
-  background-image: -o-linear-gradient(351deg, #ff70a6, #ff9770 40%, #ffd670 73%, #e9ff70);
-  background-image: linear-gradient(99deg, #ff70a6, #ff9770 40%, #ffd670 73%, #e9ff70);
+.load {
+  border-radius:50%;
+  border-left: 10px solid #ffd670;
+  border-top: 10px solid #ffd670;
+  border-left: 10px solid #ff70a6;
+  border-top: 10px solid #ff70a6;
+  width: 200px;
+  height: 200px;
   position: absolute;
   top: 0;
   left: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: white;
-}
-.Auth-Container{
-  border-radius: 8px;
-  box-shadow: 0 14px 28px 0 rgba(0, 0, 0, 0.25), 0 10px 10px 0 rgba(0, 0, 0, 0.26);
-  background-image: -webkit-linear-gradient(353deg, #ff7a6e, #Ffd670);
-  background-image: -o-linear-gradient(353deg, #ff7a6e, #Ffd670);
-  background-image: linear-gradient(97deg, #ff7a6e, #Ffd670);
-  width: 35vw;
-  height: 55vh;
-  display: -ms-flexbox;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  padding: 20px;
 }
 
-.Auth-Title{
-  font-size: 80px;
-  font-weight: 700;
-}
-
-.User-Input{
-  width: 55%;
-}
-
-.User-Input > input:focus {
-  outline-color: #ff9770;
-  outline-width: 5px;
-}
-
-.Auth-Buttons{
-  display: -ms-flexbox;
-  display: flex;
-  justify-content: space-around;
-  width: 55%;
-}
-
-/* button.css */
-.Btn{
-  border-radius: 1px;
-  background-image: -webkit-radial-gradient(50% -46%, circle, #737373, #403d39);
-  background-image: -o-radial-gradient(50% -46%, circle, #737373, #403d39);
-  background-image: radial-gradient(circle at 50% -46%, #737373, #403d39);
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-  padding: 10px 20px;
-  color: white;
-  border: none;
-}
-/* Nav.css */
-.Nav{
-    width: 100px;
-    height: 100vh;
-    position: fixed;
-    top: 0;
-    left: 0;
-    padding-top: 20px;
-    color: white;
-    background-image: -webkit-gradient(linear, left bottom, left top, from(#ff7abe), to(#ff9770));
-    background-image: -webkit-linear-gradient(bottom, #ff7abe, #ff9770);
-    background-image: -o-linear-gradient(bottom, #ff7abe, #ff9770);
-    background-image: linear-gradient(0deg, #ff7abe, #ff9770);
-    box-shadow: 10px 0 20px 0 rgba(0, 0, 0, 0.1), 5px 0 5px rgba(0, 0, 0, 0.2);
-}
-
-.Nav>div{
-  margin: 0 0 45px;
-}
-
-.Nav-Container{
-  height: 100px;
-  display: -ms-flexbox;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.Nav-Prof-Pic{
-  width: 70px;
-  height: 70px;
-  background-color: white;
-  background-position: center;
-  background-size: cover;
-  border-radius: 50%;
-  box-shadow: 0 0 20px #333;
-}
-
-.Nav-Links{
-  height: 120px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.Nav-img{
-  width: 40px;
-}
-
-.Logout{
-  position: absolute;
-  bottom: 20px;
-  left: 30px;
-}
-
-/* Form.css */
-
-.Form{
-  width: 70%;
-  margin: 0 auto;
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.img-preview{
-  width: 50%;
-  height: 300px;
-  background-position: center;
-  background-size: cover;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1) 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-}
-
-.Form-input{
-  width: 90%;
-  height: 50px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-}
-
-.Form-Text{
-  width: 90%;
-  margin: 3px auto 3px;
-}
-
-.Form-Text > p{
-  margin: 0 0 7px;
-}
-
-textarea {
-  min-width: 100%;
-  max-width: 100%;
-  min-height: 100px;
-  font-family: 'Open Sans','Courier New', Courier, monospace;
-  font-size: 12px;
-}
-
-.form-btn{
-  position: relative;
-  left: 90%;
-}
-
-/* Dashboard.css */
-.Dashboard {
-  width: 70%;
-  margin: 0 auto;
-}
-
-.dash-content{
-  display: -ms-flexbox;
-  display: flex;
-  flex-direction: column;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: justify;
-      justify-content: space-between;
-  margin: 10px 0;
-}
-
-.search{
-  display: -ms-flexbox;
-  display: flex;
-  width: 75%;
-}
-
-.Bar{
-  height: 25px;
-  width: 90%;
-}
-
-.search-btn{
-  height: 25px;
-  width: 25px;
-  border-radius: 2px;
-  padding: 2px;
-}
-
-.search > button {
-  height: 25px;
-  padding: 5px 10px;
-}
-
-.User-use{
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: distribute;
-      justify-content: space-around;
-}
-
-.dash-posts{
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
-  -ms-flex-align: center;
-  align-items: center;
-  margin: 10px 0;
-  flex-direction: column;
+a {
+  text-decoration: none;
+  color: inherit;
 }

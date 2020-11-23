@@ -29,9 +29,9 @@ class Form extends Component {
   render() {
     let { title, img, content } = this.state;
     return (
-      <div className="Form content-box">
-        <h2>New Post</h2>
-        <div className="Form-input">
+      <div className="Form content_box">
+        <h2 className="title">New Post</h2>
+        <div className="form_input_box">
           <p>Title</p>
           <input
             name="title"
@@ -41,11 +41,11 @@ class Form extends Component {
           />
         </div>
         <img
-          className="img-preview"
+          className="form_img_preview"
           src={img || "https://raw.githubusercontent.com/Jabinator1/simulation-3/master/assets/no_image.jpg"}
           alt="user's profile"
         />
-        <div className="Form-input">
+        <div className="form_input_box">
           <p>Image URL:</p>
           <input
             name="img"
@@ -54,7 +54,7 @@ class Form extends Component {
             onChange={(e) => this.changeHandler(e)}
           />
         </div>
-        <div className="Form-Text">
+        <div className="form_text_box">
           <p>Content:</p>
           <textarea
             name="content"
@@ -63,7 +63,7 @@ class Form extends Component {
             onChange={(e) => this.changeHandler(e)}
           />
         </div>
-        <button className="Btn form-btn" onClick={this.submit}>Post</button>
+        <button className="dark_button form_button" onClick={this.submit}>Post</button>
       </div>
     );
   }

@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import './Post.css'
 class Post extends Component {
   constructor(props) {
     super(props);
@@ -20,19 +21,19 @@ class Post extends Component {
 
   render() {
     return (
-      <div className="Post content-box">
+      <div className="Post content_box">
         {!this.state.loading && this.state.title ? (
           <div>
-            <div className="post-header">
+            <div className="post_header">
               <h2 className="title">{this.state.title}</h2>
-              <div className="author-box">
+              <div className="author_box">
                 <p>by {this.state.author}</p>
                 <img src={this.state.author_pic} alt="author" />
               </div>
             </div>
-            <div className="post-content">
+            <div className="post_content_box">
               <img
-                className="post-img"
+                className="post_img"
                 src={this.state.img || "https://raw.githubusercontent.com/Jabinator1/simulation-3/master/assets/no_image.jpg"}
                 alt="post"
               />
@@ -40,7 +41,7 @@ class Post extends Component {
             </div>
           </div>
         ) : !this.state.loading ? (
-          <div className="error-box">
+          <div className="oops_box">
             <h2 className="title">Oh Noooo!</h2>
             <p>Looks like we couldn't find the post!</p>
             <br/>
