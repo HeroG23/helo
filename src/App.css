@@ -20,13 +20,7 @@
   border: none;
 }
 
-.content_box {
-  border-radius: 2px;
-  background-color: white;
-  -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-          box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.2);
-  padding: 20px;
-}
+ 
 
 .title {
   font-size: 40px;
